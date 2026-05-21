@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-green: #1D9E75;
+    --brand-dark:  #0F6E56;
+    --brand-light: #E1F5EE;
+    --brand-gold:  #F59E0B;
+    --brand-navy:  #0F172A;
+  }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-gray-50 text-gray-900; }
+  .bengali-text { font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif; }
+  img { content-visibility: auto; }
+}
+
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+}

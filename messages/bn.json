@@ -1,0 +1,104 @@
+{
+  "brand": {
+    "name": "ফুটবলবার্তা",
+    "namePart1": "ফুটবল",
+    "namePart2": "বার্তা"
+  },
+  "nav": {
+    "latest":        "সর্বশেষ",
+    "worldCup":      "বিশ্বকাপ",
+    "premierLeague": "প্রিমিয়ার লিগ",
+    "laLiga":        "লা লিগা",
+    "bangladesh":    "বাংলাদেশ",
+    "india":         "ভারত",
+    "matches":       "ম্যাচ",
+    "standings":     "পয়েন্ট টেবিল"
+  },
+  "ticker": {
+    "label": "ব্রেকিং",
+    "default1": "ফুটবলবার্তায় সর্বশেষ ফুটবল খবর পড়ুন",
+    "default2": "বাংলাদেশ ফুটবলের সব আপডেট এখানে",
+    "default3": "সাফ চ্যাম্পিয়নশিপ ২০২৬ — লাইভ আপডেট",
+    "default4": "বিশ্বকাপ ২০২৬ — কাউন্টডাউন শুরু"
+  },
+  "home": {
+    "breaking":     "ব্রেকিং",
+    "latest":       "সর্বশেষ খবর",
+    "trending":     "ট্রেন্ডিং",
+    "topRead":      "সর্বাধিক পঠিত",
+    "seeAll":       "সব দেখুন",
+    "matchOfDay":   "আজকের সেরা ম্যাচ",
+    "live":         "লাইভ",
+    "finished":     "শেষ",
+    "vs":           "বনাম",
+    "matches":      "ম্যাচ",
+    "viewMore":     "দেখুন",
+    "bangladeshTitle":    "বাংলাদেশ ফুটবল",
+    "bangladeshSubtitle": "জাতীয় দলের সকল খবর",
+    "indiaTitle":         "ভারতীয় ফুটবল",
+    "indiaSubtitle":      "আইএসএল ও আই-লিগ আপডেট"
+  },
+  "news": {
+    "title":     "ফুটবল খবর",
+    "all":       "সকল",
+    "laLiga":    "লা লিগা",
+    "premierLeague": "প্রিমিয়ার লিগ",
+    "champions": "চ্যাম্পিয়নস লিগ",
+    "worldCup":  "বিশ্বকাপ",
+    "transfers": "ট্রান্সফার",
+    "national":  "জাতীয় দল",
+    "analysis":  "বিশ্লেষণ"
+  },
+  "matches": {
+    "title":    "ম্যাচ কেন্দ্র",
+    "live":     "লাইভ",
+    "recent":   "সাম্প্রতিক",
+    "upcoming": "আসন্ন",
+    "ht":       "বিরতি",
+    "ft":       "শেষ",
+    "scheduled":"আসন্ন",
+    "postponed":"স্থগিত",
+    "noMatches":"কোনো ম্যাচ পাওয়া যায়নি।",
+    "vs":       "vs"
+  },
+  "sidebar": {
+    "liveScores":     "লাইভ স্কোর",
+    "upcomingMatches":"আসন্ন ম্যাচ",
+    "standings":      "লা লিগা টেবিল",
+    "topScorers":     "শীর্ষ গোলদাতা",
+    "seeAll":         "সব দেখুন",
+    "noLive":         "কোনো লাইভ ম্যাচ নেই",
+    "noUpcoming":     "কোনো আসন্ন ম্যাচ নেই"
+  },
+  "standings": {
+    "title":   "পয়েন্ট টেবিল",
+    "rank":    "#",
+    "team":    "দল",
+    "played":  "খেলা",
+    "won":     "জয়",
+    "drawn":   "ড্র",
+    "lost":    "হার",
+    "gd":      "গোল পার্থক্য",
+    "points":  "পয়েন্ট"
+  },
+  "states": {
+    "loading": "লোড হচ্ছে...",
+    "error":   "কিছু একটা সমস্যা হয়েছে।",
+    "retry":   "আবার চেষ্টা করুন",
+    "empty":   "কোনো খবর পাওয়া যায়নি।"
+  },
+  "footer": {
+    "about":     "আমাদের সম্পর্কে",
+    "contact":   "যোগাযোগ",
+    "privacy":   "গোপনীয়তা",
+    "advertise": "বিজ্ঞাপন",
+    "copy":      "© ২০২৬ ফুটবলবার্তা"
+  },
+  "locale": {
+    "label":   "ভাষা",
+    "bengali": "বাংলা",
+    "english": "ইংরেজি",
+    "shortBn": "বাং",
+    "shortEn": "EN"
+  }
+}

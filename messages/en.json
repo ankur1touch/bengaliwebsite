@@ -1,0 +1,104 @@
+{
+  "brand": {
+    "name": "Football Barta",
+    "namePart1": "Football",
+    "namePart2": "Barta"
+  },
+  "nav": {
+    "latest":        "Latest",
+    "worldCup":      "World Cup",
+    "premierLeague": "Premier League",
+    "laLiga":        "La Liga",
+    "bangladesh":    "Bangladesh",
+    "india":         "India",
+    "matches":       "Matches",
+    "standings":     "Standings"
+  },
+  "ticker": {
+    "label": "BREAKING",
+    "default1": "Read the latest football news on Football Barta",
+    "default2": "All updates on Bangladesh football right here",
+    "default3": "SAFF Championship 2026 — live updates",
+    "default4": "World Cup 2026 — the countdown begins"
+  },
+  "home": {
+    "breaking":     "Breaking",
+    "latest":       "Latest News",
+    "trending":     "Trending",
+    "topRead":      "Most Read",
+    "seeAll":       "See All",
+    "matchOfDay":   "Match of the Day",
+    "live":         "LIVE",
+    "finished":     "Full Time",
+    "vs":           "VS",
+    "matches":      "Matches",
+    "viewMore":     "View",
+    "bangladeshTitle":    "Bangladesh Football",
+    "bangladeshSubtitle": "All news on the national team",
+    "indiaTitle":         "Indian Football",
+    "indiaSubtitle":      "ISL & I-League updates"
+  },
+  "news": {
+    "title":     "Football News",
+    "all":       "All",
+    "laLiga":    "La Liga",
+    "premierLeague": "Premier League",
+    "champions": "Champions League",
+    "worldCup":  "World Cup",
+    "transfers": "Transfers",
+    "national":  "National Teams",
+    "analysis":  "Analysis"
+  },
+  "matches": {
+    "title":    "Match Centre",
+    "live":     "LIVE",
+    "recent":   "Recent",
+    "upcoming": "Upcoming",
+    "ht":       "HT",
+    "ft":       "FT",
+    "scheduled":"Scheduled",
+    "postponed":"Postponed",
+    "noMatches":"No matches found.",
+    "vs":       "vs"
+  },
+  "sidebar": {
+    "liveScores":     "Live Scores",
+    "upcomingMatches":"Upcoming Matches",
+    "standings":      "La Liga Table",
+    "topScorers":     "Top Scorers",
+    "seeAll":         "See All",
+    "noLive":         "No live matches right now",
+    "noUpcoming":     "No upcoming matches"
+  },
+  "standings": {
+    "title":   "Standings",
+    "rank":    "#",
+    "team":    "Team",
+    "played":  "P",
+    "won":     "W",
+    "drawn":   "D",
+    "lost":    "L",
+    "gd":      "GD",
+    "points":  "Pts"
+  },
+  "states": {
+    "loading": "Loading...",
+    "error":   "Something went wrong.",
+    "retry":   "Try Again",
+    "empty":   "No news found."
+  },
+  "footer": {
+    "about":     "About Us",
+    "contact":   "Contact",
+    "privacy":   "Privacy Policy",
+    "advertise": "Advertise",
+    "copy":      "© 2026 Football Barta"
+  },
+  "locale": {
+    "label":   "Language",
+    "bengali": "Bengali",
+    "english": "English",
+    "shortBn": "বাং",
+    "shortEn": "EN"
+  }
+}

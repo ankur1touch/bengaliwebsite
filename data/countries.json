@@ -1,0 +1,64 @@
+[
+  {
+    "id": "bangladesh",
+    "name": "Bangladesh",
+    "nameBn": "বাংলাদেশ",
+    "flag": "🇧🇩",
+    "leagues": ["BPL", "Bangladesh Premier League", "SAFF Championship"],
+    "keywords": [
+      "bangladesh", "বাংলাদেশ", "bpl", "abahani", "mohammedan",
+      "saff", "bashundhara kings", "sheikh russel", "btff",
+      "jamal bhuyan", "tariq kazi"
+    ],
+    "description": "বাংলাদেশ জাতীয় ফুটবল দল এবং বাংলাদেশ প্রিমিয়ার লিগের সর্বশেষ খবর।"
+  },
+  {
+    "id": "india",
+    "name": "India",
+    "nameBn": "ভারত",
+    "flag": "🇮🇳",
+    "leagues": ["ISL", "I-League"],
+    "keywords": [
+      "india", "ভারত", "isl", "i-league", "indian super league",
+      "east bengal", "mohun bagan", "mumbai city", "aiff",
+      "sunil chhetri", "blue tigers"
+    ],
+    "description": "ভারত জাতীয় ফুটবল দল, আইএসএল এবং আই-লিগের সর্বশেষ আপডেট।"
+  },
+  {
+    "id": "argentina",
+    "name": "Argentina",
+    "nameBn": "আর্জেন্টিনা",
+    "flag": "🇦🇷",
+    "leagues": ["Primera División"],
+    "keywords": [
+      "argentina", "আর্জেন্টিনা", "messi", "মেসি", "albiceleste",
+      "river plate", "boca juniors", "copa america"
+    ],
+    "description": "আর্জেন্টিনা ফুটবল সম্পর্কিত সর্বশেষ খবর ও বিশ্লেষণ।"
+  },
+  {
+    "id": "brazil",
+    "name": "Brazil",
+    "nameBn": "ব্রাজিল",
+    "flag": "🇧🇷",
+    "leagues": ["Série A"],
+    "keywords": [
+      "brazil", "ব্রাজিল", "neymar", "নেইমার", "seleção",
+      "vinicius", "flamengo", "palmeiras", "copa do brasil"
+    ],
+    "description": "ব্রাজিল ফুটবল সম্পর্কিত সর্বশেষ খবর ও বিশ্লেষণ।"
+  },
+  {
+    "id": "spain",
+    "name": "Spain",
+    "nameBn": "স্পেন",
+    "flag": "🇪🇸",
+    "leagues": ["La Liga"],
+    "keywords": [
+      "spain", "স্পেন", "real madrid", "barcelona", "atletico madrid",
+      "la liga", "la roja", "pedri", "bellingham", "yamal"
+    ],
+    "description": "স্পেন ফুটবল, লা লিগা এবং স্পেনিশ ক্লাবগুলোর সর্বশেষ খবর।"
+  }
+]
