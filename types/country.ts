@@ -8,4 +8,6 @@ export interface Country {
   leagues:     string[];
   keywords:    string[];
   description: string;
+  leagueId?:   number;
+  season?:     number;
 }

@@ -4,6 +4,8 @@
     "name": "Bangladesh",
     "nameBn": "বাংলাদেশ",
     "flag": "🇧🇩",
+    "leagueId": 1032,
+    "season": 2025,
     "leagues": ["BPL", "Bangladesh Premier League", "SAFF Championship"],
     "keywords": [
       "bangladesh", "বাংলাদেশ", "bpl", "abahani", "mohammedan",
@@ -17,6 +19,8 @@
     "name": "India",
     "nameBn": "ভারত",
     "flag": "🇮🇳",
+    "leagueId": 323,
+    "season": 2025,
     "leagues": ["ISL", "I-League"],
     "keywords": [
       "india", "ভারত", "isl", "i-league", "indian super league",
@@ -30,6 +34,8 @@
     "name": "Argentina",
     "nameBn": "আর্জেন্টিনা",
     "flag": "🇦🇷",
+    "leagueId": 128,
+    "season": 2025,
     "leagues": ["Primera División"],
     "keywords": [
       "argentina", "আর্জেন্টিনা", "messi", "মেসি", "albiceleste",
@@ -42,6 +48,8 @@
     "name": "Brazil",
     "nameBn": "ব্রাজিল",
     "flag": "🇧🇷",
+    "leagueId": 71,
+    "season": 2025,
     "leagues": ["Série A"],
     "keywords": [
       "brazil", "ব্রাজিল", "neymar", "নেইমার", "seleção",
@@ -54,6 +62,8 @@
     "name": "Spain",
     "nameBn": "স্পেন",
     "flag": "🇪🇸",
+    "leagueId": 140,
+    "season": 2025,
     "leagues": ["La Liga"],
     "keywords": [
       "spain", "স্পেন", "real madrid", "barcelona", "atletico madrid",

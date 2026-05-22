@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { fetchNews } from '@/store/features/newsSlice';
+import { fetchNews, fetchNewsByCategory } from '@/store/features/newsSlice';
 import NewsCard from '@/components/home/NewsCard';
 import { SkeletonCard } from '@/components/ui/Skeleton';
 import ErrorState from '@/components/ui/ErrorState';
@@ -27,16 +27,19 @@ export default function NewsListingClient({ initialFilter }: { initialFilter?: N
   ];
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchNews());
-  }, [dispatch, status]);
+    if (activeTab === 'all') dispatch(fetchNews());
+    else dispatch(fetchNewsByCategory(activeTab));
+  }, [dispatch, activeTab]);
 
-  const filtered = activeTab === 'all' ? articles : articles.filter((a) => a.tag === activeTab);
+  const handleTab = (key: NewsTag | 'all') => {
+    setActiveTab(key);
+  };
 
   return (
     <div>
       <div className="flex gap-2 overflow-x-auto pb-2 mb-5 scrollbar-hide">
         {TABS.map((tab) => (
-          <button key={tab.key} onClick={() => setActiveTab(tab.key)}
+          <button key={tab.key} type="button" onClick={() => handleTab(tab.key)}
             className={`shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               activeTab === tab.key
                 ? 'bg-green-700 text-white'
@@ -47,16 +50,21 @@ export default function NewsListingClient({ initialFilter }: { initialFilter?: N
         ))}
       </div>
 
-      {status === 'loading' && (
+      {(status === 'loading' || status === 'idle') && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[1,2,3,4,5,6].map((i) => <SkeletonCard key={i} />)}
         </div>
       )}
-      {status === 'failed' && <ErrorState message={error ?? undefined} onRetry={() => dispatch(fetchNews())} />}
-      {status === 'succeeded' && !filtered.length && <EmptyState />}
-      {status === 'succeeded' && filtered.length > 0 && (
+      {status === 'failed' && (
+        <ErrorState
+          message={error ?? undefined}
+          onRetry={() => activeTab === 'all' ? dispatch(fetchNews()) : dispatch(fetchNewsByCategory(activeTab))}
+        />
+      )}
+      {status === 'succeeded' && !articles.length && <EmptyState />}
+      {status === 'succeeded' && articles.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((item) => <NewsCard key={item.id} item={item} />)}
+          {articles.map((item) => <NewsCard key={item.id} item={item} />)}
         </div>
       )}
     </div>

@@ -1,4 +1,6 @@
-import Link from 'next/link';
+'use client';
+
+import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import Badge from '@/components/ui/Badge';
 import type { NewsItem } from '@/types';

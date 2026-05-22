@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchMatches } from '@/store/features/matchesSlice';
@@ -18,7 +18,9 @@ function MatchCard({ m, locale, tHome, tMatches }: {
   const dateLoc  = locale === 'bn' ? 'bn-BD' : 'en-GB';
 
   return (
-    <div className={`shrink-0 w-60 snap-start rounded-xl p-3 border transition-all ${
+    <Link
+      href={`/matches/${m.id}`}
+      className={`block shrink-0 w-60 snap-start rounded-xl p-3 border transition-all ${
       isLive
         ? 'bg-red-50 border-red-200 shadow-sm'
         : 'bg-white border-gray-100 hover:border-green-200 hover:shadow-md'
@@ -61,7 +63,7 @@ function MatchCard({ m, locale, tHome, tMatches }: {
               day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit',
             })}
       </p>
-    </div>
+    </Link>
   );
 }
 

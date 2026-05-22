@@ -12,13 +12,14 @@
     "bangladesh":    "Bangladesh",
     "india":         "India",
     "matches":       "Matches",
-    "standings":     "Standings"
+    "standings":     "Standings",
+    "players":       "Players"
   },
   "ticker": {
     "label": "BREAKING",
     "default1": "Read the latest football news on Football Barta",
-    "default2": "All updates on Bangladesh football right here",
-    "default3": "SAFF Championship 2026 — live updates",
+    "default2": "Live scores, standings and match updates",
+    "default3": "Transfer news and analysis from around the world",
     "default4": "World Cup 2026 — the countdown begins"
   },
   "home": {
@@ -64,7 +65,7 @@
   "sidebar": {
     "liveScores":     "Live Scores",
     "upcomingMatches":"Upcoming Matches",
-    "standings":      "La Liga Table",
+    "standings":      "League Table",
     "topScorers":     "Top Scorers",
     "seeAll":         "See All",
     "noLive":         "No live matches right now",
@@ -100,5 +101,54 @@
     "english": "English",
     "shortBn": "বাং",
     "shortEn": "EN"
+  },
+  "detail": {
+    "events":     "Events",
+    "lineups":    "Lineups",
+    "stats":      "Statistics",
+    "h2h":        "Head to Head",
+    "noEvents":      "No events yet",
+    "noEventsLive":  "Match in progress — no goals or cards yet",
+    "noLineups":     "Lineups not available",
+    "noLineupsLive": "Lineups not provided for this competition",
+    "noStats":       "Statistics not available",
+    "noStatsLive":   "Statistics not yet available for this match",
+    "noH2h":         "No previous meetings",
+    "assist":        "Assist",
+    "starters":   "Starting XI",
+    "subs":       "Substitutes",
+    "formation":  "Formation",
+    "squad":      "Squad",
+    "fixtures":   "Fixtures",
+    "results":    "Results",
+    "position":   "League Position",
+    "appearances":"Apps",
+    "goals":      "Goals",
+    "assists":    "Assists",
+    "minutes":    "Minutes",
+    "age":        "Age",
+    "nationality":"Nationality",
+    "founded":    "Founded",
+    "venue":      "Venue"
+  },
+  "players": {
+    "title":    "Top Scorers",
+    "rank":     "#",
+    "player":   "Player",
+    "team":     "Team",
+    "goals":    "Goals"
+  },
+  "search": {
+    "placeholder": "Search news...",
+    "title":       "Search Results",
+    "for":         "Results for",
+    "noResults":   "No results found",
+    "hint":        "Try a different keyword"
+  },
+  "newsletter": {
+    "title":    "Stay Updated",
+    "subtitle": "Get the latest football news in your inbox",
+    "cta":      "Subscribe",
+    "note":     "UI only — backend coming soon"
   }
 }

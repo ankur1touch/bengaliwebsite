@@ -1,5 +1,6 @@
 export interface StandingRow {
   position:        number;
+  teamId?:         number;
   teamName:        string;
   crestUrl?:       string;
   playedGames:     number;
@@ -11,10 +12,14 @@ export interface StandingRow {
 }
 
 export interface TopScorer {
+  playerId?:   number;
+  teamId?:     number;
   playerName:  string;
   teamName:    string;
   goals:       number;
+  assists?:    number;
   crestUrl?:   string;
+  photo?:      string;
 }
 
 export interface RankingsPayload {

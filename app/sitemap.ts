@@ -5,8 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articles = getAllArticles().map((a) => ({
     url: `${BASE}/news/${a.slug}`, lastModified: new Date(a.publishedAt),
   }));
-  const statics = ['', '/news', '/matches', '/standings', '/world-cup',
-    '/country/bangladesh', '/country/india', '/country/argentina', '/country/brazil', '/country/spain',
+  const statics = ['', '/news', '/matches', '/standings', '/players', '/search', '/world-cup',
   ].map((path) => ({ url: `${BASE}${path}`, lastModified: new Date() }));
   return [...statics, ...articles];
 }

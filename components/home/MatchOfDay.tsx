@@ -1,17 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchMatches } from '@/store/features/matchesSlice';
 import Badge from '@/components/ui/Badge';
 import type { LiveMatch } from '@/types';
+import { MAJOR_LEAGUE_IDS } from '@/lib/football-endpoints';
 
 function pickMatchOfDay(matches: LiveMatch[]): LiveMatch | null {
-  const live      = matches.find((m) => m.status === 'LIVE');
-  if (live) return live;
-  const upcoming  = matches.find((m) => m.status === 'SCHEDULED');
+  const live = matches.filter((m) => m.status === 'LIVE');
+  const majorLive = live.find((m) => m.leagueId && MAJOR_LEAGUE_IDS.has(m.leagueId));
+  if (majorLive) return majorLive;
+  if (live.length) return live[0];
+  const upcoming = matches.find((m) => m.status === 'SCHEDULED');
   if (upcoming) return upcoming;
   return matches[0] ?? null;
 }
@@ -56,7 +59,7 @@ function MatchOfDayCard({ match }: { match: LiveMatch }) {
 
   return (
     <Link
-      href="/matches"
+      href={`/matches/${match.id}`}
       className="block bg-gradient-to-br from-green-700 via-green-800 to-green-900 rounded-xl p-5 text-white shadow-lg hover:shadow-2xl transition-all hover:-translate-y-0.5"
     >
       <div className="flex items-center justify-between mb-3">

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchRankings } from '@/store/features/rankingsSlice';
@@ -13,7 +13,7 @@ export default function StandingsTable() {
   const tSidebar = useTranslations('sidebar');
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchRankings());
+    if (status === 'idle') dispatch(fetchRankings({}));
   }, [dispatch, status]);
 
   return (
@@ -36,7 +36,11 @@ export default function StandingsTable() {
           {standings.slice(0, 5).map((row) => (
             <tr key={row.position} className="border-b border-gray-50">
               <td className="py-1.5 text-gray-500">{row.position}</td>
-              <td className="py-1.5 font-medium text-gray-800 truncate max-w-[120px]">{row.teamName}</td>
+              <td className="py-1.5 font-medium text-gray-800 truncate max-w-[120px]">
+                {row.teamId ? (
+                  <Link href={`/teams/${row.teamId}`} className="hover:text-green-700">{row.teamName}</Link>
+                ) : row.teamName}
+              </td>
               <td className="py-1.5 text-center text-gray-500">{row.playedGames}</td>
               <td className="py-1.5 text-center font-bold text-green-700">{row.points}</td>
             </tr>

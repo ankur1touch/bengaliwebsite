@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchRankingsApi } from '@/lib/api/rankings';
+import { fetchRankingsApi, type FetchRankingsParams } from '@/lib/api/rankings';
 import type { StandingRow, TopScorer, AsyncStatus } from '@/types';
 
 interface RankingsState {
@@ -11,7 +11,10 @@ interface RankingsState {
 
 const initialState: RankingsState = { standings: [], topScorers: [], status: 'idle', error: null };
 
-export const fetchRankings = createAsyncThunk('rankings/fetchAll', fetchRankingsApi);
+export const fetchRankings = createAsyncThunk(
+  'rankings/fetchAll',
+  (params?: FetchRankingsParams) => fetchRankingsApi(params ?? {}),
+);
 
 const rankingsSlice = createSlice({
   name: 'rankings', initialState, reducers: {},

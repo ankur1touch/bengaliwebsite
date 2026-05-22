@@ -2,7 +2,7 @@
 
 A bilingual (Bengali + English) football news and live data website built with Next.js 15.
 
-Live football news, scores, standings, top scorers, and match schedules — with full Bengali/English language switching.
+Live football news, scores, standings, top scorers, match detail, player/team profiles, and search — with full Bengali/English language switching.
 
 ## Tech Stack
 
@@ -14,41 +14,59 @@ Live football news, scores, standings, top scorers, and match schedules — with
 | State | Redux Toolkit |
 | i18n | next-intl (bn / en) |
 | News | RSS aggregation (BBC, ESPN, Guardian, Sky Sports, 90min) |
-| Football Data | API-Football proxy (server-side, no exposed keys) |
+| Football Data | API-Football CMS proxy (server-side, no exposed keys) |
 | Articles | MDX / Markdown content |
+
+## Architecture
+
+```
+Browser → Redux → lib/api/*.ts → POST /api/* → lib/football-api.ts → lib/api-football-cms.ts → CMS proxy
+News:    Browser → Redux → lib/api/news.ts → POST /api/news → lib/rss.ts + lib/mdx.ts
+```
 
 ## Project Structure
 
 ```
 ├── app/
-│   ├── [locale]/          # Localized pages (bn default, en prefixed)
-│   │   ├── page.tsx       # Homepage
-│   │   ├── news/          # News listing & article detail
-│   │   ├── matches/       # Match centre
-│   │   ├── standings/     # League tables
-│   │   ├── country/       # Bangladesh & India hubs
-│   │   └── ...
-│   └── api/               # SSR-safe POST API routes
-│       ├── news/          # RSS + MDX news aggregation
-│       ├── matches/       # Live & upcoming fixtures
-│       ├── rankings/      # Standings + top scorers
-│       └── ...
+│   ├── [locale]/              # Localized pages (bn default, en prefixed)
+│   │   ├── page.tsx           # Homepage
+│   │   ├── news/              # News listing & article detail
+│   │   ├── matches/           # Match centre + /matches/[id] detail
+│   │   ├── players/           # Top scorers + /players/[id] profile
+│   │   ├── teams/[id]/        # Team profile (squad, fixtures)
+│   │   ├── standings/         # League tables
+│   │   ├── search/            # News search
+│   │   ├── country/[id]/      # Bangladesh & India hubs
+│   │   └── world-cup/         # World Cup news hub
+│   └── api/                   # SSR-safe API routes
+│       ├── news/              # RSS + MDX news aggregation
+│       ├── matches/           # Live & upcoming fixtures (+ /[id])
+│       ├── rankings/          # Standings + top scorers
+│       ├── players/[id]/      # Player profile
+│       └── teams/[id]/        # Team profile
 ├── components/
-│   ├── home/              # MatchOfDay, UpcomingMatches, News cards
-│   ├── layout/            # Header, Footer, Ticker, LocaleSwitcher
-│   ├── sidebar/           # Live scores, standings, top scorers widgets
-│   ├── matches/           # Match listing client
-│   └── ui/                # Shared UI primitives
+│   ├── home/                  # MatchOfDay, UpcomingMatches, News cards
+│   ├── layout/                # Header, Footer, Ticker, HeaderSearch
+│   ├── sidebar/               # Live scores, standings, top scorers, HomeSidebarData
+│   ├── matches/               # MatchesClient, MatchDetailClient, MatchCardRow
+│   ├── players/               # TopScorersPageClient, PlayerDetailClient
+│   ├── teams/                 # TeamDetailClient
+│   ├── search/                # SearchClient
+│   └── ui/                    # Tabs, Button, Tag, Badge, Skeleton
 ├── lib/
-│   ├── football-proxy.ts  # API-Football proxy client
-│   ├── rss.ts             # RSS feed aggregation & filtering
-│   └── api/               # Client-side API abstraction
-├── store/                 # Redux store & slices
-├── messages/              # i18n translation files (bn.json, en.json)
-├── i18n/                  # next-intl routing config
-├── content/articles/      # MDX/Markdown articles
-├── data/                  # Static JSON fallback data
-└── types/                 # Shared TypeScript types
+│   ├── api-football-cms.ts    # CMS fetch + failover
+│   ├── football-api.ts        # Orchestration (matches, rankings, detail payloads)
+│   ├── football-endpoints.ts  # API path constants
+│   ├── country-leagues.ts     # Country → leagueId/season mapping
+│   ├── football-proxy.ts      # Legacy proxy (uses cmsFetch)
+│   ├── rss.ts                 # RSS feed aggregation & filtering
+│   └── api/                   # Client-side API abstraction
+├── store/                     # Redux store & slices
+├── messages/                  # i18n translation files (bn.json, en.json)
+├── i18n/                      # next-intl routing config
+├── content/articles/          # MDX/Markdown articles
+├── data/                      # Static JSON (countries with leagueId/season)
+└── types/                     # Shared TypeScript types
 ```
 
 ## Getting Started
@@ -76,7 +94,9 @@ cp .env.example .env.local
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `FOOTBALL_DATA_TOKEN` | No | football-data.org API key (fallback proxy used if empty) |
+| `FOOTBALL_API_BASE_URL` | No | Primary CMS proxy base URL |
+| `FOOTBALL_API_SEASON` | No | Default season year (e.g. `2025`) |
+| `FOOTBALL_DATA_TOKEN` | No | football-data.org API key (fallback if CMS unavailable) |
 | `NEXT_PUBLIC_SITE_URL` | No | Public site URL for SEO/sitemap |
 
 ### Run locally
@@ -95,29 +115,55 @@ npm run build
 npm start
 ```
 
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage — match of day, upcoming fixtures, news, sidebar widgets |
+| `/news` | Filterable news listing (league, transfers, world cup, etc.) |
+| `/news/[slug]` | Article detail (MDX + RSS) |
+| `/matches` | Live, upcoming, and finished fixtures |
+| `/matches/[id]` | Match detail — events, lineups, stats, H2H |
+| `/players` | Full top scorers table |
+| `/players/[id]` | Player profile |
+| `/teams/[id]` | Team profile — squad, fixtures, league position |
+| `/standings` | League table + top scorers |
+| `/search?q=` | Client-side news search |
+| `/country/[id]` | Country hub — news + country-scoped football data |
+| `/world-cup` | World Cup news filter |
+
+All routes are prefixed with `/en` for English (e.g. `/en/matches/12345`).
+
 ## Features
 
 - **Bilingual UI** — Full Bengali/English switch via header toggle
 - **Live News Ticker** — Scrolling breaking headlines from RSS feeds
 - **Match of the Day** — Featured live or upcoming match with countdown
+- **Match Detail** — Events, lineups, stats, and head-to-head tabs
+- **Player & Team Profiles** — Linked from standings, scorers, and match cards
+- **Header Search** — Quick news search from any page
 - **Upcoming Matches Strip** — Horizontal scroll of fixtures with team crests
 - **Live Scores Widget** — Real-time scores in sidebar
 - **La Liga Standings & Top Scorers** — Live league table and goal charts
-- **Country Hubs** — Bangladesh & India football sections
+- **Country Hubs** — Bangladesh & India football sections with scoped data
 - **Football-only News Filter** — No cricket/boxing content
 - **SSR-safe API Routes** — All external API calls proxied server-side
+- **Newsletter CTA** — Footer signup UI (no backend)
 
 ## API Routes
 
-All routes use `POST` for SSR-safe data fetching:
+All routes accept `GET` (defaults) and `POST` (with JSON body) for SSR-safe data fetching:
 
-| Route | Data |
-|-------|------|
-| `/api/news` | Aggregated RSS + MDX news |
-| `/api/matches` | Live & upcoming fixtures |
-| `/api/rankings` | Standings + top scorers |
-| `/api/fixtures` | Fixtures by league/team |
-| `/api/match-detail` | Match events, lineups, stats |
+| Route | Body params | Data |
+|-------|-------------|------|
+| `/api/news` | `{ category? }` | Aggregated RSS + MDX news |
+| `/api/matches` | `{ tab?, countryId? }` | Live, upcoming, or finished fixtures |
+| `/api/matches/[id]` | — | Match detail (events, lineups, stats, H2H) |
+| `/api/rankings` | `{ countryId?, leagueId? }` | Standings + top scorers |
+| `/api/players/[id]` | — | Player profile |
+| `/api/teams/[id]` | — | Team profile (squad, fixtures) |
+| `/api/countries` | — | Country list |
+| `/api/country/[id]` | — | Single country metadata |
 
 ## Deployment
 
