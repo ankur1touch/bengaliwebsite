@@ -1,0 +1,30 @@
+{
+  "kickoff": "2026-06-11T19:00:00Z",
+  "hosts": ["USA", "Canada", "Mexico"],
+  "teams": 48,
+  "matches": 104,
+  "cities": 16,
+  "trophy": {
+    "material": "18K Gold",
+    "weight": "6.175 kg",
+    "height": "36.8 cm",
+    "description": "The iconic FIFA World Cup Trophy — contested every four years by the best nations on Earth."
+  },
+  "champions": [
+    { "country": "Brazil", "flag": "🇧🇷", "titles": 5 },
+    { "country": "Germany", "flag": "🇩🇪", "titles": 4 },
+    { "country": "Italy", "flag": "🇮🇹", "titles": 4 },
+    { "country": "Argentina", "flag": "🇦🇷", "titles": 3 },
+    { "country": "France", "flag": "🇫🇷", "titles": 2 }
+  ],
+  "mascot": {
+    "name": "Taíno",
+    "emoji": "🐆",
+    "description": "Inspired by indigenous heritage of the Americas — official mascot of FIFA World Cup 2026."
+  },
+  "hostNations": [
+    { "country": "USA", "flag": "🇺🇸", "cities": 11 },
+    { "country": "Canada", "flag": "🇨🇦", "cities": 2 },
+    { "country": "Mexico", "flag": "🇲🇽", "cities": 3 }
+  ]
+}

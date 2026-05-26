@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fetchMatches } from '@/lib/football-api';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
-const HEADERS = { 'Cache-Control': 's-maxage=60, stale-while-revalidate=120' };
+const HEADERS = { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120' };
 
 export async function POST(req: NextRequest) {
   try {

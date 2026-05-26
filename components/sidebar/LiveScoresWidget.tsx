@@ -11,9 +11,9 @@ function ScoreRow({ m, locale }: { m: LiveMatch; locale: string }) {
   const isLive = m.status === 'LIVE';
   const timeLoc = locale === 'bn' ? 'bn-BD' : 'en-GB';
   return (
-    <div className="py-2 border-b border-gray-50 last:border-0">
+    <div className="py-2.5 border-b border-gray-50 last:border-0">
       <div className="flex items-center justify-between gap-2">
-        <div className="flex-1 min-w-0 space-y-1">
+        <div className="flex-1 min-w-0 space-y-1.5">
           <div className="flex items-center gap-1.5">
             {m.homeCrest && (
               // eslint-disable-next-line @next/next/no-img-element
@@ -31,7 +31,7 @@ function ScoreRow({ m, locale }: { m: LiveMatch; locale: string }) {
         </div>
         <div className="text-center shrink-0">
           {m.homeScore !== undefined && m.awayScore !== undefined ? (
-            <p className={`text-sm font-extrabold tabular-nums leading-tight ${isLive ? 'text-red-600' : 'text-green-700'}`}>
+            <p className={`font-display text-base tabular-nums leading-tight ${isLive ? 'text-red-600' : 'text-green-700'}`}>
               {m.homeScore}<br/>{m.awayScore}
             </p>
           ) : (
@@ -40,7 +40,7 @@ function ScoreRow({ m, locale }: { m: LiveMatch; locale: string }) {
             </p>
           )}
           {isLive && m.minute !== undefined && (
-            <span className="inline-block mt-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-red-500 text-white">
+            <span className="inline-block mt-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-red-500 text-white uppercase tracking-wide">
               {m.minute}&apos;
             </span>
           )}
@@ -65,16 +65,18 @@ export default function LiveScoresWidget() {
   const display = live.length ? live : upcoming;
 
   return (
-    <div className="bg-white rounded-lg border border-gray-100 p-4" style={{ minHeight: 200 }}>
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-bold text-gray-800 border-l-4 border-red-500 pl-3 flex items-center gap-2">
+    <div className="bg-gradient-to-b from-white to-gray-50 rounded-2xl border border-gray-100 p-4 shadow-sm" style={{ minHeight: 200 }}>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-display text-lg uppercase tracking-wider text-gray-800 flex items-center gap-2">
           {live.length > 0 && <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />}
           {live.length ? t('liveScores') : t('upcomingMatches')}
         </h3>
-        <Link href="/matches" className="text-xs text-green-700 hover:underline">{t('seeAll')} →</Link>
+        <Link href="/matches" className="text-xs text-green-700 hover:underline uppercase tracking-wide font-medium">
+          {t('seeAll')} →
+        </Link>
       </div>
       {(status === 'loading' || status === 'idle') && (
-        <div className="space-y-2">{[1,2,3].map((i) => <Skeleton key={i} className="h-12" />)}</div>
+        <div className="space-y-2">{[1,2,3].map((i) => <Skeleton key={i} className="h-12 rounded-lg" />)}</div>
       )}
       {status === 'succeeded' && display.length === 0 && (
         <p className="text-xs text-gray-400 text-center py-6">

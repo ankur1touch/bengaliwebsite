@@ -1,0 +1,35 @@
+[
+  {
+    "id": "world-cup-2026",
+    "title": "FIFA World Cup 2026",
+    "status": "upcoming",
+    "date": "Jun 11, 2026",
+    "hosts": "USA · Canada · Mexico",
+    "teams": 48,
+    "matches": 104,
+    "href": "/world-cup",
+    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80"
+  },
+  {
+    "id": "champions-league",
+    "title": "UEFA Champions League",
+    "status": "ongoing",
+    "date": "2025–26 Season",
+    "hosts": "Europe",
+    "teams": 36,
+    "matches": null,
+    "href": "/matches",
+    "image": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80"
+  },
+  {
+    "id": "premier-league",
+    "title": "Premier League",
+    "status": "ongoing",
+    "date": "2025–26 Season",
+    "hosts": "England",
+    "teams": 20,
+    "matches": 380,
+    "href": "/standings",
+    "image": "https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=800&q=80"
+  }
+]

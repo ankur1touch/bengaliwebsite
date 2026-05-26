@@ -17,7 +17,14 @@ export const fetchMatches = createAsyncThunk(
 );
 
 const matchesSlice = createSlice({
-  name: 'matches', initialState, reducers: {},
+  name: 'matches', initialState,
+  reducers: {
+    hydrateMatches: (s, a: { payload: LiveMatch[] }) => {
+      s.matches = a.payload;
+      s.status = 'succeeded';
+      s.error = null;
+    },
+  },
   extraReducers: (b) => {
     b.addCase(fetchMatches.pending, (s, a) => {
       s.status = 'loading';
@@ -28,4 +35,5 @@ const matchesSlice = createSlice({
   },
 });
 
+export const { hydrateMatches } = matchesSlice.actions;
 export default matchesSlice.reducer;

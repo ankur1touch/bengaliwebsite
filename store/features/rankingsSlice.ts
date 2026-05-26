@@ -17,7 +17,15 @@ export const fetchRankings = createAsyncThunk(
 );
 
 const rankingsSlice = createSlice({
-  name: 'rankings', initialState, reducers: {},
+  name: 'rankings', initialState,
+  reducers: {
+    hydrateRankings: (s, a: { payload: { standings: StandingRow[]; topScorers: TopScorer[] } }) => {
+      s.standings = a.payload.standings;
+      s.topScorers = a.payload.topScorers;
+      s.status = 'succeeded';
+      s.error = null;
+    },
+  },
   extraReducers: (b) => {
     b.addCase(fetchRankings.pending,   (s) => { s.status = 'loading'; });
     b.addCase(fetchRankings.fulfilled, (s, a) => {
@@ -29,4 +37,5 @@ const rankingsSlice = createSlice({
   },
 });
 
+export const { hydrateRankings } = rankingsSlice.actions;
 export default rankingsSlice.reducer;

@@ -27,7 +27,13 @@ export const fetchNewsByCountry = createAsyncThunk(
 const newsSlice = createSlice({
   name: 'news',
   initialState,
-  reducers: {},
+  reducers: {
+    hydrateNews: (s, a: { payload: NewsItem[] }) => {
+      s.articles = a.payload;
+      s.status = 'succeeded';
+      s.error = null;
+    },
+  },
   extraReducers: (b) => {
     b.addCase(fetchNews.pending,   (s) => { s.status = 'loading'; s.error = null; });
     b.addCase(fetchNews.fulfilled, (s, a) => { s.status = 'succeeded'; s.articles = a.payload; });
@@ -48,4 +54,5 @@ const newsSlice = createSlice({
   },
 });
 
+export const { hydrateNews } = newsSlice.actions;
 export default newsSlice.reducer;

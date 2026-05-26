@@ -1,0 +1,12 @@
+[
+  { "rank": 1,  "country": "Argentina",  "flag": "🇦🇷", "points": 1896.45, "change": 0,  "confederation": "CONMEBOL" },
+  { "rank": 2,  "country": "France",     "flag": "🇫🇷", "points": 1854.23, "change": 0,  "confederation": "UEFA" },
+  { "rank": 3,  "country": "Brazil",     "flag": "🇧🇷", "points": 1840.67, "change": 0,  "confederation": "CONMEBOL" },
+  { "rank": 4,  "country": "England",    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "points": 1798.20, "change": 0,  "confederation": "UEFA" },
+  { "rank": 5,  "country": "Belgium",    "flag": "🇧🇪", "points": 1791.45, "change": -1, "confederation": "UEFA" },
+  { "rank": 6,  "country": "Portugal",   "flag": "🇵🇹", "points": 1776.78, "change": 1,  "confederation": "UEFA" },
+  { "rank": 7,  "country": "Spain",      "flag": "🇪🇸", "points": 1770.23, "change": 0,  "confederation": "UEFA" },
+  { "rank": 8,  "country": "Netherlands","flag": "🇳🇱", "points": 1756.34, "change": 0,  "confederation": "UEFA" },
+  { "rank": 9,  "country": "Italy",      "flag": "🇮🇹", "points": 1742.56, "change": 0,  "confederation": "UEFA" },
+  { "rank": 10, "country": "USA",        "flag": "🇺🇸", "points": 1740.23, "change": 2,  "confederation": "CONCACAF" }
+]

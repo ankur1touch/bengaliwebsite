@@ -28,7 +28,10 @@ import type {
   RankingsPayload,
   StandingRow,
   TopScorer,
+  FifaRanking,
+  SearchResult,
 } from '@/types';
+import staticFifaRankings from '@/data/fifa-rankings.json';
 
 export type MatchTab = 'live' | 'upcoming' | 'results' | 'all';
 
@@ -441,4 +444,132 @@ export async function fetchTeamDetailPayload(teamId: string): Promise<TeamDetail
 
   setCache(cacheKey, payload, 300);
   return payload;
+}
+
+// ── FIFA country rankings ──────────────────────────────────────
+
+interface RawFifaRanking {
+  rank: number;
+  team: { name: string; logo?: string };
+  points: number;
+  previousRank?: number;
+}
+
+export async function fetchFifaRankings(): Promise<FifaRanking[]> {
+  const cacheKey = 'fifa-rankings';
+  const cached = getCache<FifaRanking[]>(cacheKey);
+  if (cached) return cached;
+
+  const FLAG_MAP: Record<string, string> = {
+    Argentina: '🇦🇷', France: '🇫🇷', Brazil: '🇧🇷', England: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+    Belgium: '🇧🇪', Portugal: '🇵🇹', Spain: '🇪🇸', Netherlands: '🇳🇱',
+    Italy: '🇮🇹', USA: '🇺🇸', Germany: '🇩🇪', Croatia: '🇭🇷', Morocco: '🇲🇦',
+  };
+
+  let rankings: FifaRanking[] = [];
+
+  const data = await cmsFetch<{ response: RawFifaRanking[] }>(
+    '/rankings',
+    { league: LEAGUE_IDS.WORLD_CUP, season: DEFAULT_SEASON },
+    { revalidate: 86400 },
+  );
+  const raw = extractResponse<RawFifaRanking>(data);
+
+  if (raw.length >= 5) {
+    rankings = raw.slice(0, 10).map((r, i) => ({
+      rank: r.rank ?? i + 1,
+      country: r.team.name,
+      flag: FLAG_MAP[r.team.name] ?? '⚽',
+      points: r.points,
+      change: r.previousRank ? r.previousRank - (r.rank ?? i + 1) : 0,
+    }));
+  }
+
+  if (!rankings.length) {
+    rankings = staticFifaRankings as FifaRanking[];
+  }
+
+  setCache(cacheKey, rankings, 86400);
+  return rankings;
+}
+
+// ── Global search ──────────────────────────────────────────────
+
+export async function fetchGlobalSearch(query: string): Promise<SearchResult> {
+  const q = query.trim().toLowerCase();
+  if (!q) return { news: [], matches: [], players: [], teams: [] };
+
+  const { getAggregatedNews } = await import('./rss');
+  const { getAllArticles } = await import('./mdx');
+
+  const [matches, rankingsPayload, rssNews, mdxArticles] = await Promise.all([
+    fetchMatches({ tab: 'all' }),
+    fetchRankings({}),
+    getAggregatedNews().catch(() => []),
+    Promise.resolve(getAllArticles()),
+  ]);
+
+  const mdxNews = mdxArticles.map((a) => ({
+    id: a.slug,
+    title: a.title,
+    slug: a.slug,
+    url: `/news/${a.slug}`,
+    source: 'Football Barta',
+    tag: a.tag,
+    excerpt: a.excerpt,
+  }));
+
+  const allNews = [
+    ...rssNews.map((n) => ({ id: n.id, title: n.title, slug: n.slug, url: n.url, source: n.source, tag: n.tag, excerpt: n.excerpt })),
+    ...mdxNews,
+  ];
+
+  const news = allNews
+    .filter((n) =>
+      n.title.toLowerCase().includes(q) ||
+      n.source.toLowerCase().includes(q) ||
+      n.tag?.toLowerCase().includes(q) ||
+      n.excerpt?.toLowerCase().includes(q),
+    )
+    .slice(0, 12);
+
+  const matchResults = matches
+    .filter((m) =>
+      m.homeTeam.toLowerCase().includes(q) ||
+      m.awayTeam.toLowerCase().includes(q) ||
+      m.competition.toLowerCase().includes(q),
+    )
+    .slice(0, 8)
+    .map((m) => ({
+      id: m.id,
+      homeTeam: m.homeTeam,
+      awayTeam: m.awayTeam,
+      competition: m.competition,
+      status: m.status,
+    }));
+
+  const players = rankingsPayload.topScorers
+    .filter((p) =>
+      p.playerName.toLowerCase().includes(q) ||
+      p.teamName.toLowerCase().includes(q),
+    )
+    .slice(0, 8)
+    .map((p) => ({
+      id: p.playerId ?? 0,
+      name: p.playerName,
+      team: p.teamName,
+      goals: p.goals,
+    }))
+    .filter((p) => p.id);
+
+  const teams = rankingsPayload.standings
+    .filter((s) => s.teamName.toLowerCase().includes(q))
+    .slice(0, 8)
+    .map((s) => ({
+      id: s.teamId ?? 0,
+      name: s.teamName,
+    }))
+    .filter((t) => t.id);
+
+  return { news, matches: matchResults, players, teams };
 }

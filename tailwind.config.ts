@@ -17,17 +17,23 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans:    ['var(--font-inter)', 'sans-serif'],
-        display: ['var(--font-hind-siliguri)', 'sans-serif'],
+        sans:    ['var(--font-outfit)', 'sans-serif'],
+        display: ['var(--font-bebas)', 'sans-serif'],
+        bengali: ['var(--font-hind)', 'Noto Sans Bengali', 'sans-serif'],
       },
       keyframes: {
         marquee: {
           '0%':   { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        fadeIn: {
+          '0%':   { opacity: '0', transform: 'translateY(8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         marquee: 'marquee 35s linear infinite',
+        fadeIn:  'fadeIn 0.5s ease-out forwards',
       },
     },
   },

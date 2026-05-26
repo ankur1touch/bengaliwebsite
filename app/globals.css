@@ -11,12 +11,15 @@
     --brand-navy:  #0F172A;
   }
   html { scroll-behavior: smooth; }
-  body { @apply bg-gray-50 text-gray-900; }
-  .bengali-text { font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif; }
+  body { @apply bg-gray-50 text-gray-900 font-sans; }
   img { content-visibility: auto; }
 }
 
 @layer utilities {
+  .font-display { letter-spacing: 0.02em; }
+  .hero-gradient {
+    background: linear-gradient(135deg, #064e3b 0%, #052e16 50%, #0f172a 100%);
+  }
   .scrollbar-none::-webkit-scrollbar { display: none; }
   .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 }

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "username": "FootballFan_ARG",
+    "flag": "🇦🇷",
+    "hashtag": "WC2026",
+    "text": "Vamos Argentina! Messi going for his second World Cup. This team is unstoppable!",
+    "likes": 4812,
+    "timeAgo": "2m"
+  },
+  {
+    "id": "2",
+    "username": "FrenchFootball",
+    "flag": "🇫🇷",
+    "hashtag": "Mbappe",
+    "text": "Mbappé with 8 goals already! Les Bleus are on fire. France winning the final.",
+    "likes": 3241,
+    "timeAgo": "5m"
+  },
+  {
+    "id": "3",
+    "username": "BrazilNacao",
+    "flag": "🇧🇷",
+    "hashtag": "Vinicius",
+    "text": "Vinícius Jr is simply the best in the world right now. Brazil will be back!",
+    "likes": 2890,
+    "timeAgo": "12m"
+  },
+  {
+    "id": "4",
+    "username": "MetLifeUSA",
+    "flag": "🇺🇸",
+    "hashtag": "WC2026",
+    "text": "MetLife Stadium is electric! 82,500 fans from all over the world. This is football in America!",
+    "likes": 1734,
+    "timeAgo": "18m"
+  },
+  {
+    "id": "5",
+    "username": "FootballGlobal",
+    "flag": "⚽",
+    "hashtag": "WorldCup2026",
+    "text": "48 teams, 104 matches, 16 cities across 3 countries. The World Cup 2026 is a global festival!",
+    "likes": 8912,
+    "timeAgo": "25m"
+  },
+  {
+    "id": "6",
+    "username": "BanglaFootball",
+    "flag": "🇧🇩",
+    "hashtag": "FootballBarta",
+    "text": "Following every match on Football Barta. Best Bengali football coverage out there!",
+    "likes": 956,
+    "timeAgo": "30m"
+  }
+]

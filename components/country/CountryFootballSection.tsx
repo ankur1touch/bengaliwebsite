@@ -7,7 +7,7 @@ import { fetchRankings } from '@/store/features/rankingsSlice';
 import { fetchMatches } from '@/store/features/matchesSlice';
 import MatchCardRow from '@/components/matches/MatchCardRow';
 import { Skeleton } from '@/components/ui/Skeleton';
-import type { CountryId } from '@/types';
+import type { CountryId, LiveMatch, StandingRow, TopScorer } from '@/types';
 
 interface Props { countryId: CountryId; }
 
@@ -39,7 +39,7 @@ export default function CountryFootballSection({ countryId }: Props) {
               <th className="pb-1 text-center">{t('points')}</th>
             </tr></thead>
             <tbody>
-              {standings.slice(0, 5).map((row) => (
+              {standings.slice(0, 5).map((row: StandingRow) => (
                 <tr key={row.position} className="border-b border-gray-50">
                   <td className="py-1.5 text-gray-500">{row.position}</td>
                   <td className="py-1.5 font-medium">{row.teamName}</td>
@@ -57,7 +57,7 @@ export default function CountryFootballSection({ countryId }: Props) {
           <div className="space-y-2">{[1,2,3,4,5].map((i) => <Skeleton key={i} className="h-8" />)}</div>
         ) : (
           <div className="space-y-2">
-            {topScorers.slice(0, 5).map((s, i) => (
+            {topScorers.slice(0, 5).map((s: TopScorer, i: number) => (
               <div key={i} className="flex justify-between text-xs">
                 <span className="font-medium">{s.playerName}</span>
                 <span className="font-bold text-green-700">{s.goals}</span>
@@ -71,7 +71,7 @@ export default function CountryFootballSection({ countryId }: Props) {
         <div className="md:col-span-2">
           <h3 className="text-sm font-bold text-gray-800 border-l-4 border-green-600 pl-3 mb-3">{tSidebar('upcomingMatches')}</h3>
           <div className="space-y-2">
-            {matches.slice(0, 4).map((m) => <MatchCardRow key={m.id} match={m} compact />)}
+            {matches.slice(0, 4).map((m: LiveMatch) => <MatchCardRow key={m.id} match={m} compact />)}
           </div>
         </div>
       )}

@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchMatches } from '@/store/features/matchesSlice';
 import { Skeleton } from '@/components/ui/Skeleton';
+import TeamCrest from '@/components/ui/TeamCrest';
 import type { LiveMatch } from '@/types';
 
 function MatchCard({ m, locale, tHome, tMatches }: {
@@ -30,10 +31,7 @@ function MatchCard({ m, locale, tHome, tMatches }: {
       </p>
       <div className="flex items-center justify-between gap-1">
         <div className="flex items-center gap-1.5 flex-1 min-w-0">
-          {m.homeCrest && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={m.homeCrest} alt="" className="w-5 h-5 object-contain shrink-0" loading="lazy" />
-          )}
+          {m.homeCrest && <TeamCrest src={m.homeCrest} size={20} className="w-5 h-5 shrink-0" />}
           <span className="text-xs font-semibold text-gray-800 truncate">{m.homeTeam}</span>
         </div>
 
@@ -49,10 +47,7 @@ function MatchCard({ m, locale, tHome, tMatches }: {
 
         <div className="flex items-center gap-1.5 flex-1 min-w-0 justify-end">
           <span className="text-xs font-semibold text-gray-800 truncate text-right">{m.awayTeam}</span>
-          {m.awayCrest && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={m.awayCrest} alt="" className="w-5 h-5 object-contain shrink-0" loading="lazy" />
-          )}
+          {m.awayCrest && <TeamCrest src={m.awayCrest} size={20} className="w-5 h-5 shrink-0" />}
         </div>
       </div>
 
@@ -97,11 +92,11 @@ export default function UpcomingMatchesStrip() {
 
   return (
     <section>
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-base font-bold text-gray-800 border-l-4 border-green-600 pl-3">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="font-display text-xl sm:text-2xl uppercase tracking-wider text-gray-800">
           {tHome('matches')}
         </h2>
-        <Link href="/matches" className="text-sm text-green-700 hover:underline font-medium">
+        <Link href="/matches" className="text-sm text-green-700 hover:underline font-medium uppercase tracking-wide">
           {tHome('seeAll')} →
         </Link>
       </div>

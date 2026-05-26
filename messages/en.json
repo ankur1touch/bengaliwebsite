@@ -13,7 +13,9 @@
     "india":         "India",
     "matches":       "Matches",
     "standings":     "Standings",
-    "players":       "Players"
+    "players":       "Players",
+    "teams":         "Teams",
+    "transfers":     "Transfers"
   },
   "ticker": {
     "label": "BREAKING",
@@ -34,6 +36,18 @@
     "vs":           "VS",
     "matches":      "Matches",
     "viewMore":     "View",
+    "heroWcBadge":  "WC 2026",
+    "heroWcTitle":  "FIFA WORLD CUP",
+    "heroWcYear":   "2026",
+    "heroWcDesc":   "48 teams. 16 cities. 3 nations. The greatest show on earth — June 11, 2026.",
+    "heroCountdownLabel": "Kickoff Countdown",
+    "heroDays":     "Days",
+    "heroHours":    "Hours",
+    "heroMins":     "Mins",
+    "heroSecs":     "Secs",
+    "heroExploreWc":"Explore Tournament",
+    "heroReadStory":"Read Full Story",
+    "heroTopStory": "Top Story",
     "bangladeshTitle":    "Bangladesh Football",
     "bangladeshSubtitle": "All news on the national team",
     "indiaTitle":         "Indian Football",
@@ -93,7 +107,21 @@
     "contact":   "Contact",
     "privacy":   "Privacy Policy",
     "advertise": "Advertise",
-    "copy":      "© 2026 Football Barta"
+    "copy":      "© 2026 Football Barta",
+    "tagline":   "The World's Game",
+    "colFootball": "Football",
+    "colTournaments": "Tournaments",
+    "colNews": "News",
+    "colSite": "Football Barta",
+    "matches": "Matches",
+    "standings": "Standings",
+    "players": "Players",
+    "teams": "Teams",
+    "worldCup": "World Cup",
+    "fixtures": "Fixtures",
+    "latest": "Latest News",
+    "transfers": "Transfers",
+    "search": "Search"
   },
   "locale": {
     "label":   "Language",
@@ -143,7 +171,58 @@
     "title":       "Search Results",
     "for":         "Results for",
     "noResults":   "No results found",
-    "hint":        "Try a different keyword"
+    "hint":        "Try a different keyword",
+    "results":     "results",
+    "tabAll":      "All",
+    "tabNews":     "News",
+    "tabMatches":  "Matches",
+    "tabPlayers":  "Players",
+    "tabTeams":    "Teams"
+  },
+  "fifaRankings": {
+    "title": "World Rankings",
+    "mens": "Men's · May 2026",
+    "currentNumber1": "Current #1"
+  },
+  "tournaments": {
+    "title": "Tournaments",
+    "seeAll": "View All",
+    "upcoming": "Upcoming",
+    "ongoing": "Ongoing",
+    "teams": "Teams",
+    "matches": "Matches"
+  },
+  "fanzone": {
+    "live": "Live Fan Zone",
+    "title": "The World is Watching",
+    "subtitle": "Fan reactions from around the globe",
+    "reply": "Reply",
+    "share": "Share"
+  },
+  "worldcup": {
+    "badge": "FIFA World Cup 2026",
+    "title": "FIFA World Cup",
+    "subtitle": "48 teams. 16 cities. 3 nations. USA · Canada · Mexico — June 11, 2026.",
+    "days": "Days",
+    "hours": "Hours",
+    "mins": "Mins",
+    "secs": "Secs",
+    "viewFixtures": "View Fixtures",
+    "trophyLabel": "FIFA World Cup Trophy",
+    "trophyTitle": "The Most Coveted Prize in Football",
+    "goldTrophy": "Gold Trophy",
+    "kilograms": "Kilograms",
+    "cmTall": "CM Tall",
+    "previousChampions": "Previous Champions",
+    "officialMascot": "Official Mascot 2026",
+    "hostVenues": "Host Venues",
+    "cities": "cities",
+    "fixtures": "Upcoming Fixtures",
+    "vs": "vs"
+  },
+  "teams": {
+    "title": "Teams",
+    "pts": "pts"
   },
   "newsletter": {
     "title":    "Stay Updated",

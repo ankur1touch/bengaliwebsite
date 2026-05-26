@@ -13,7 +13,9 @@
     "india":         "ভারত",
     "matches":       "ম্যাচ",
     "standings":     "পয়েন্ট টেবিল",
-    "players":       "খেলোয়াড়"
+    "players":       "খেলোয়াড়",
+    "teams":         "দল",
+    "transfers":     "ট্রান্সফার"
   },
   "ticker": {
     "label": "ব্রেকিং",
@@ -34,6 +36,18 @@
     "vs":           "বনাম",
     "matches":      "ম্যাচ",
     "viewMore":     "দেখুন",
+    "heroWcBadge":  "WC ২০২৬",
+    "heroWcTitle":  "ফিফা বিশ্বকাপ",
+    "heroWcYear":   "২০২৬",
+    "heroWcDesc":   "৪৮ দল। ১৬ শহর। ৩ দেশ। সবচেয়ে বড় ফুটবল উৎসব — ১১ জুন ২০২৬।",
+    "heroCountdownLabel": "কিকঅফ কাউন্টডাউন",
+    "heroDays":     "দিন",
+    "heroHours":    "ঘণ্টা",
+    "heroMins":     "মিনিট",
+    "heroSecs":     "সেকেন্ড",
+    "heroExploreWc":"টুর্নামেন্ট দেখুন",
+    "heroReadStory":"সম্পূর্ণ খবর পড়ুন",
+    "heroTopStory": "শীর্ষ খবর",
     "bangladeshTitle":    "বাংলাদেশ ফুটবল",
     "bangladeshSubtitle": "জাতীয় দলের সকল খবর",
     "indiaTitle":         "ভারতীয় ফুটবল",
@@ -93,7 +107,21 @@
     "contact":   "যোগাযোগ",
     "privacy":   "গোপনীয়তা",
     "advertise": "বিজ্ঞাপন",
-    "copy":      "© ২০২৬ ফুটবলবার্তা"
+    "copy":      "© ২০২৬ ফুটবলবার্তা",
+    "tagline":   "বিশ্বের খেলা",
+    "colFootball": "ফুটবল",
+    "colTournaments": "টুর্নামেন্ট",
+    "colNews": "খবর",
+    "colSite": "ফুটবলবার্তা",
+    "matches": "ম্যাচ",
+    "standings": "পয়েন্ট টেবিল",
+    "players": "খেলোয়াড়",
+    "teams": "দল",
+    "worldCup": "বিশ্বকাপ",
+    "fixtures": "ফিক্সচার",
+    "latest": "সর্বশেষ খবর",
+    "transfers": "ট্রান্সফার",
+    "search": "অনুসন্ধান"
   },
   "locale": {
     "label":   "ভাষা",
@@ -143,7 +171,58 @@
     "title":       "অনুসন্ধান ফলাফল",
     "for":         "ফলাফল",
     "noResults":   "কোনো ফলাফল পাওয়া যায়নি",
-    "hint":        "অন্য কীওয়ার্ড চেষ্টা করুন"
+    "hint":        "অন্য কীওয়ার্ড চেষ্টা করুন",
+    "results":     "ফলাফল",
+    "tabAll":      "সব",
+    "tabNews":     "খবর",
+    "tabMatches":  "ম্যাচ",
+    "tabPlayers":  "খেলোয়াড়",
+    "tabTeams":    "দল"
+  },
+  "fifaRankings": {
+    "title": "বিশ্ব র‍্যাঙ্কিং",
+    "mens": "পুরুষ · মে ২০২৬",
+    "currentNumber1": "বর্তমান #১"
+  },
+  "tournaments": {
+    "title": "টুর্নামেন্ট",
+    "seeAll": "সব দেখুন",
+    "upcoming": "আসন্ন",
+    "ongoing": "চলমান",
+    "teams": "দল",
+    "matches": "ম্যাচ"
+  },
+  "fanzone": {
+    "live": "লাইভ ফ্যান জোন",
+    "title": "বিশ্ব দেখছে",
+    "subtitle": "বিশ্বজুড়ে ভক্তদের প্রতিক্রিয়া",
+    "reply": "উত্তর",
+    "share": "শেয়ার"
+  },
+  "worldcup": {
+    "badge": "ফিফা বিশ্বকাপ ২০২৬",
+    "title": "ফিফা বিশ্বকাপ",
+    "subtitle": "৪৮ দল। ১৬ শহর। ৩ দেশ। USA · Canada · Mexico — ১১ জুন ২০২৬।",
+    "days": "দিন",
+    "hours": "ঘণ্টা",
+    "mins": "মিনিট",
+    "secs": "সেকেন্ড",
+    "viewFixtures": "ফিক্সচার দেখুন",
+    "trophyLabel": "ফিফা বিশ্বকাপ ট্রফি",
+    "trophyTitle": "ফুটবলের সবচেয়ে মূল্যবান পুরস্কার",
+    "goldTrophy": "স্বর্ণ ট্রফি",
+    "kilograms": "কিলোগ্রাম",
+    "cmTall": "সে.মি. উচ্চ",
+    "previousChampions": "পূর্ববর্তী চ্যাম্পিয়ন",
+    "officialMascot": "অফিসিয়াল ম্যাসকট ২০২৬",
+    "hostVenues": "আয়োজক ভেন্যু",
+    "cities": "শহর",
+    "fixtures": "আসন্ন ফিক্সচার",
+    "vs": "বনাম"
+  },
+  "teams": {
+    "title": "দল",
+    "pts": "পয়েন্ট"
   },
   "newsletter": {
     "title":    "আপডেট পান",
