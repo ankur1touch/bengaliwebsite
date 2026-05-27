@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchNews } from '@/store/features/newsSlice';
 import NewsCard from './NewsCard';
@@ -13,10 +13,11 @@ export default function HomeNewsClient() {
   const dispatch = useAppDispatch();
   const { articles, status, error } = useAppSelector((s) => s.news);
   const t = useTranslations('home');
+  const locale = useLocale();
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchNews());
-  }, [dispatch, status]);
+    if (status === 'idle') dispatch(fetchNews(locale));
+  }, [dispatch, status, locale]);
 
   if (status === 'loading' || (status === 'idle' && !articles.length)) {
     return (
@@ -27,7 +28,7 @@ export default function HomeNewsClient() {
       </div>
     );
   }
-  if (status === 'failed') return <ErrorState message={error ?? undefined} onRetry={() => dispatch(fetchNews())} />;
+  if (status === 'failed') return <ErrorState message={error ?? undefined} onRetry={() => dispatch(fetchNews(locale))} />;
   if (!articles.length) return <EmptyState />;
 
   const gridArticles = articles.slice(1, 7);

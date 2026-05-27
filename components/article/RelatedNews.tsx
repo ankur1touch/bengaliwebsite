@@ -1,22 +1,28 @@
-import { getAllArticles } from '@/lib/mdx';
+import { getTranslations } from 'next-intl/server';
+import { getAllArticlesAsync } from '@/lib/articles';
+import { filterArticlesByLocale, mapInternalArticle } from '@/lib/news-locale';
 import NewsCard from '@/components/home/NewsCard';
-import type { NewsTag, NewsItem } from '@/types';
+import type { NewsTag } from '@/types';
 
-export default function RelatedNews({ currentSlug, currentTag }: { currentSlug: string; currentTag: NewsTag }) {
-  const related = getAllArticles()
+export default async function RelatedNews({
+  currentSlug,
+  currentTag,
+  locale,
+}: {
+  currentSlug: string;
+  currentTag: NewsTag;
+  locale: string;
+}) {
+  const t = await getTranslations({ locale, namespace: 'article' });
+  const related = filterArticlesByLocale(await getAllArticlesAsync(), locale)
     .filter((a) => a.slug !== currentSlug && a.tag === currentTag)
     .slice(0, 3)
-    .map((a): NewsItem => ({
-      id: a.slug, title: a.title, excerpt: a.excerpt,
-      url: `/news/${a.slug}`, imageUrl: a.imageUrl,
-      source: 'ফুটবলবার্তা', tag: a.tag, publishedAt: a.publishedAt,
-      isInternal: true, slug: a.slug,
-    }));
+    .map((a) => mapInternalArticle(a, locale));
 
   if (!related.length) return null;
   return (
     <div className="mt-10 pt-6 border-t">
-      <h2 className="text-lg font-bold mb-4 border-l-4 border-green-600 pl-3">সম্পর্কিত খবর</h2>
+      <h2 className="text-lg font-bold mb-4 border-l-4 border-green-600 pl-3">{t('relatedNews')}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {related.map((item) => <NewsCard key={item.id} item={item} />)}
       </div>

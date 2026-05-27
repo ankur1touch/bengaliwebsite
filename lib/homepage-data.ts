@@ -3,28 +3,21 @@
  */
 import { fetchMatches, fetchRankings, fetchFifaRankings } from './football-api';
 import { getAggregatedNews } from './rss';
-import { getAllArticles } from './mdx';
+import { getAllArticlesAsync } from './articles';
+import { filterArticlesByLocale, mapInternalArticle } from './news-locale';
 import type { NewsItem, LiveMatch, RankingsPayload, FifaRanking } from '@/types';
 
-export async function getHomeNews(): Promise<NewsItem[]> {
+export async function getHomeNews(locale = 'bn'): Promise<NewsItem[]> {
   const [rssItems, articles] = await Promise.all([
     getAggregatedNews(),
-    Promise.resolve(
-      getAllArticles().map((a): NewsItem => ({
-        id: a.slug,
-        title: a.title,
-        excerpt: a.excerpt,
-        url: `/news/${a.slug}`,
-        imageUrl: a.imageUrl,
-        source: 'ফুটবলবার্তা',
-        tag: a.tag,
-        publishedAt: a.publishedAt,
-        isInternal: true,
-        slug: a.slug,
-      })),
-    ),
+    getAllArticlesAsync(),
   ]);
-  return [...articles, ...rssItems].sort(
+
+  const internalItems = filterArticlesByLocale(articles, locale).map((a) =>
+    mapInternalArticle(a, locale),
+  );
+
+  return [...internalItems, ...rssItems].sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 }
@@ -36,10 +29,10 @@ export interface HomePageData {
   fifaRankings: FifaRanking[];
 }
 
-export async function getHomePageData(): Promise<HomePageData> {
+export async function getHomePageData(locale = 'bn'): Promise<HomePageData> {
   const [matches, news, rankings, fifaRankings] = await Promise.all([
     fetchMatches({ tab: 'all' }),
-    getHomeNews(),
+    getHomeNews(locale),
     fetchRankings({}),
     fetchFifaRankings(),
   ]);

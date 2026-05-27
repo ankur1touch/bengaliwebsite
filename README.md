@@ -165,9 +165,26 @@ All routes accept `GET` (defaults) and `POST` (with JSON body) for SSR-safe data
 | `/api/countries` | — | Country list |
 | `/api/country/[id]` | — | Single country metadata |
 
-## Deployment
+## Deployment (AWS Amplify)
 
-Configured for [Vercel](https://vercel.com) via `vercel.json`. Push to `main` branch to deploy.
+1. Connect this repo in [AWS Amplify Console](https://console.aws.amazon.com/amplify/) (branch: `main`).
+2. Amplify uses `amplify.yml` — build: `npm ci` → `npm run build` (Next.js SSR / WEB_COMPUTE).
+3. Set **Environment variables** in Amplify → App settings → Environment variables:
+
+| Variable | Required | Notes |
+|----------|----------|--------|
+| `NEXT_PUBLIC_SITE_URL` | Yes | Your Amplify URL or custom domain (no trailing slash) |
+| `FOOTBALL_API_BASE_URL` | Yes | CMS football proxy base URL |
+| `FOOTBALL_API_SEASON` | Yes | e.g. `2025` |
+| `CMS_API_TOKEN` | Yes | Secret for `POST /api/articles` (n8n publish) |
+| `MONGODB_URI` | Yes (prod) | Published articles storage (Amplify has no writable disk) |
+| `MONGODB_DB` | Optional | Default: `football_barta` |
+| `FOOTBALL_DATA_TOKEN` | Optional | Football-Data.org fallback |
+
+4. In **n8n**, set `CMS_API_URL=https://your-domain.com/api/articles` and the same `CMS_API_TOKEN`.
+5. Push to `main` to trigger a deploy.
+
+See `.env.example` for all keys.
 
 ## License
 

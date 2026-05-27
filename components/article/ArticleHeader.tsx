@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import SafeImage from '@/components/ui/SafeImage';
 import Badge from '@/components/ui/Badge';
 import { formatDate } from '@/lib/dates';
 import type { Article } from '@/types';
@@ -13,7 +13,7 @@ export default function ArticleHeader({ article }: { article: Article }) {
       </p>
       {article.imageUrl && (
         <div className="relative h-64 lg:h-80 rounded-xl overflow-hidden mb-6">
-          <Image src={article.imageUrl} alt={article.title} fill className="object-cover" />
+          <SafeImage src={article.imageUrl} alt={article.title} fill className="object-cover" />
         </div>
       )}
       <p className="text-lg text-gray-700 leading-relaxed border-l-4 border-green-600 pl-4">{article.excerpt}</p>

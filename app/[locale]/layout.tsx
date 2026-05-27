@@ -50,7 +50,10 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const messages = await getMessages();
-  const fontClass = `${bebasNeue.variable} ${outfit.variable} ${hindSiliguri.variable}`;
+  const fontClass =
+    locale === 'bn'
+      ? `${bebasNeue.variable} ${outfit.variable} ${hindSiliguri.variable}`
+      : `${bebasNeue.variable} ${outfit.variable}`;
   const bodyFont = locale === 'bn' ? 'font-bengali' : 'font-sans';
 
   return (

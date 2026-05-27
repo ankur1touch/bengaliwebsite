@@ -28,4 +28,8 @@ export interface Article {
   imageUrl?:   string;
   tag:         NewsTag;
   tags:        string[];
+  language?:   string;
+  sourceUrl?:  string;
+  sourceName?: string;
+  articleId?:  string;
 }

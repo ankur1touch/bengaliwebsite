@@ -1,7 +1,7 @@
-import { getAllArticles } from './mdx';
+import { getAllArticlesAsync } from './articles';
 
-export function generateSiteFeed(siteUrl: string): string {
-  const articles = getAllArticles().slice(0, 20);
+export async function generateSiteFeed(siteUrl: string): Promise<string> {
+  const articles = (await getAllArticlesAsync()).slice(0, 20);
   const items = articles.map((a) => `
     <item>
       <title><![CDATA[${a.title}]]></title>

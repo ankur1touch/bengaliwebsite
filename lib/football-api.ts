@@ -500,13 +500,13 @@ export async function fetchGlobalSearch(query: string): Promise<SearchResult> {
   if (!q) return { news: [], matches: [], players: [], teams: [] };
 
   const { getAggregatedNews } = await import('./rss');
-  const { getAllArticles } = await import('./mdx');
+  const { getAllArticlesAsync } = await import('./articles');
 
   const [matches, rankingsPayload, rssNews, mdxArticles] = await Promise.all([
     fetchMatches({ tab: 'all' }),
     fetchRankings({}),
     getAggregatedNews().catch(() => []),
-    Promise.resolve(getAllArticles()),
+    getAllArticlesAsync(),
   ]);
 
   const mdxNews = mdxArticles.map((a) => ({

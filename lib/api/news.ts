@@ -1,8 +1,8 @@
 import axiosClient from '@/lib/client';
 import type { NewsItem } from '@/types';
 
-export async function fetchNewsApi(category?: string): Promise<NewsItem[]> {
-  const { data } = await axiosClient.post<NewsItem[]>('/api/news', { category });
+export async function fetchNewsApi(category?: string, locale?: string): Promise<NewsItem[]> {
+  const { data } = await axiosClient.post<NewsItem[]>('/api/news', { category, locale });
   return data;
 }
 

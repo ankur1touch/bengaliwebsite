@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
+import SafeImage from '@/components/ui/SafeImage';
+import { Link } from '@/i18n/navigation';
 import Badge from '@/components/ui/Badge';
 import RelativeTime from '@/components/ui/RelativeTime';
 import type { NewsItem } from '@/types';
@@ -11,7 +11,7 @@ export default function NewsCard({ item }: { item: NewsItem }) {
     <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 h-full flex flex-col">
       <div className="relative h-44 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
         {item.imageUrl ? (
-          <Image
+          <SafeImage
             src={item.imageUrl}
             alt={item.title}
             fill

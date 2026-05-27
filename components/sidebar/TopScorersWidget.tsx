@@ -5,15 +5,23 @@ import { useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchRankings } from '@/store/features/rankingsSlice';
 import { Skeleton } from '@/components/ui/Skeleton';
+import type { TopScorer } from '@/types';
 
-export default function TopScorersWidget() {
+interface Props {
+  initialTopScorers?: TopScorer[];
+}
+
+export default function TopScorersWidget({ initialTopScorers }: Props) {
   const dispatch = useAppDispatch();
   const { topScorers, status } = useAppSelector((s) => s.rankings);
   const t = useTranslations('sidebar');
+  const scorers = initialTopScorers?.length ? initialTopScorers : topScorers;
+  const loading = !initialTopScorers?.length && (status === 'loading' || status === 'idle');
 
   useEffect(() => {
+    if (initialTopScorers?.length) return;
     if (status === 'idle') dispatch(fetchRankings({}));
-  }, [dispatch, status]);
+  }, [dispatch, status, initialTopScorers?.length]);
 
   return (
     <div className="bg-gradient-to-b from-white to-gray-50 rounded-2xl border border-gray-100 p-4 shadow-sm" style={{ minHeight: 240 }}>
@@ -26,11 +34,12 @@ export default function TopScorersWidget() {
           {t('seeAll')} →
         </Link>
       </div>
-      {(status === 'loading' || status === 'idle') && (
+      {loading && (
         <div className="space-y-2">{[1,2,3,4,5].map((i) => <Skeleton key={i} className="h-8 rounded-lg" />)}</div>
       )}
+      {!loading && (
       <div className="space-y-2.5">
-        {topScorers.slice(0, 5).map((s, i) => (
+        {scorers.slice(0, 5).map((s, i) => (
           <div key={i} className="flex items-center justify-between text-xs py-1">
             <div className="flex items-center gap-2.5 min-w-0">
               <span className="font-display text-sm text-gray-400 w-5 shrink-0">{i + 1}</span>
@@ -49,6 +58,7 @@ export default function TopScorersWidget() {
           </div>
         ))}
       </div>
+      )}
     </div>
   );
 }

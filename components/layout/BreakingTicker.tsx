@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 const FOOTBALL_KEYWORDS =
   /football|soccer|goal|match|league|cup|fifa|uefa|premier|la liga|serie a|bundesliga|champions|transfer|manager|coach|squad|fixture|kick|striker|midfielder|defender|goalkeeper|penalty|ফুটবল|গোল|ম্যাচ|লিগ|কাপ|দল/i;
 
 export default function BreakingTicker() {
   const t = useTranslations('ticker');
+  const locale = useLocale();
   const defaults = useMemo(
     () => [t('default1'), t('default2'), t('default3'), t('default4')],
     [t]
@@ -21,7 +22,7 @@ export default function BreakingTicker() {
         const res = await fetch('/api/news', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: '{}',
+          body: JSON.stringify({ locale }),
         });
         if (!res.ok) return;
         const data = await res.json();
@@ -49,7 +50,7 @@ export default function BreakingTicker() {
     }
     const timeout = setTimeout(run, 1500);
     return () => { cancelled = true; clearTimeout(timeout); };
-  }, []);
+  }, [locale]);
 
   const doubled = [...items, ...items];
 

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { fetchNews, fetchNewsByCategory } from '@/store/features/newsSlice';
 import NewsCard from '@/components/home/NewsCard';
@@ -14,6 +14,7 @@ export default function NewsListingClient({ initialFilter }: { initialFilter?: N
   const { articles, status, error } = useAppSelector((s) => s.news);
   const [activeTab, setActiveTab] = useState<NewsTag | 'all'>(initialFilter ?? 'all');
   const t = useTranslations('news');
+  const locale = useLocale();
 
   const TABS: { key: NewsTag | 'all'; label: string }[] = [
     { key: 'all',            label: t('all')           },
@@ -27,9 +28,9 @@ export default function NewsListingClient({ initialFilter }: { initialFilter?: N
   ];
 
   useEffect(() => {
-    if (activeTab === 'all') dispatch(fetchNews());
-    else dispatch(fetchNewsByCategory(activeTab));
-  }, [dispatch, activeTab]);
+    if (activeTab === 'all') dispatch(fetchNews(locale));
+    else dispatch(fetchNewsByCategory({ category: activeTab, locale }));
+  }, [dispatch, activeTab, locale]);
 
   const handleTab = (key: NewsTag | 'all') => {
     setActiveTab(key);
@@ -58,7 +59,11 @@ export default function NewsListingClient({ initialFilter }: { initialFilter?: N
       {status === 'failed' && (
         <ErrorState
           message={error ?? undefined}
-          onRetry={() => activeTab === 'all' ? dispatch(fetchNews()) : dispatch(fetchNewsByCategory(activeTab))}
+          onRetry={() =>
+            activeTab === 'all'
+              ? dispatch(fetchNews(locale))
+              : dispatch(fetchNewsByCategory({ category: activeTab, locale }))
+          }
         />
       )}
       {status === 'succeeded' && !articles.length && <EmptyState />}

@@ -14,10 +14,10 @@ const initialState: NewsState = {
   articles: [], byCountry: {}, status: 'idle', countryStatus: 'idle', error: null,
 };
 
-export const fetchNews = createAsyncThunk('news/fetchAll', () => fetchNewsApi());
+export const fetchNews = createAsyncThunk('news/fetchAll', (locale?: string) => fetchNewsApi(undefined, locale));
 export const fetchNewsByCategory = createAsyncThunk(
   'news/fetchByCategory',
-  (category: string) => fetchNewsApi(category),
+  ({ category, locale }: { category: string; locale?: string }) => fetchNewsApi(category, locale),
 );
 export const fetchNewsByCountry = createAsyncThunk(
   'news/fetchByCountry',

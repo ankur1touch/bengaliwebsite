@@ -42,7 +42,7 @@ export default function FanZoneStrip() {
             </div>
             <p className="text-sm text-gray-300 leading-relaxed line-clamp-3">{post.text}</p>
             <div className="flex items-center gap-4 mt-3 text-xs text-gray-500">
-              <span>❤ {post.likes.toLocaleString()}</span>
+              <span>❤ {post.likes.toLocaleString('en-US')}</span>
               <span className="cursor-default">{t('reply')}</span>
               <span className="cursor-default">{t('share')}</span>
             </div>

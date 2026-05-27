@@ -5,12 +5,14 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: ['lucide-react', '@reduxjs/toolkit', 'react-redux'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 86400,
     remotePatterns: [
       { protocol: 'https', hostname: '**.90min.com' },
+      { protocol: 'https', hostname: '**.minutemediacdn.com' },
       { protocol: 'https', hostname: '**.bbc.com' },
       { protocol: 'https', hostname: '**.bbc.co.uk' },
       { protocol: 'https', hostname: '**.bbci.co.uk' },
@@ -29,6 +31,14 @@ const nextConfig = {
   },
   compress: true,
   poweredByHeader: false,
+  async headers() {
+    return [
+      {
+        source: '/_next/static/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
+    ];
+  },
   async redirects() {
     return [
       { source: '/khobor/:slug', destination: '/news/:slug', permanent: true },

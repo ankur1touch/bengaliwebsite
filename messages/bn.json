@@ -64,6 +64,9 @@
     "national":  "জাতীয় দল",
     "analysis":  "বিশ্লেষণ"
   },
+  "article": {
+    "relatedNews": "সম্পর্কিত খবর"
+  },
   "matches": {
     "title":    "ম্যাচ কেন্দ্র",
     "live":     "লাইভ",

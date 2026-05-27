@@ -64,6 +64,9 @@
     "national":  "National Teams",
     "analysis":  "Analysis"
   },
+  "article": {
+    "relatedNews": "Related News"
+  },
   "matches": {
     "title":    "Match Centre",
     "live":     "LIVE",
