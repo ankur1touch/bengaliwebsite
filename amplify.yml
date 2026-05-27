@@ -3,9 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - nvm install 20
+        - nvm use 20
+        - node --version
+        - npm --version
+        - npm ci --cache .npm --prefer-offline
     build:
       commands:
+        - export NODE_OPTIONS="--max-old-space-size=4096"
         - npm run build
   artifacts:
     baseDirectory: .next
@@ -13,5 +18,6 @@ frontend:
       - '**/*'
   cache:
     paths:
+      - .npm/**/*
       - node_modules/**/*
       - .next/cache/**/*

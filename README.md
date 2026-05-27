@@ -184,6 +184,8 @@ All routes accept `GET` (defaults) and `POST` (with JSON body) for SSR-safe data
 4. In **n8n**, set `CMS_API_URL=https://your-domain.com/api/articles` and the same `CMS_API_TOKEN`.
 5. Push to `main` to trigger a deploy.
 
+**If build fails:** In Amplify Console → App settings → General → confirm **Platform** is `WEB_COMPUTE` and **Framework** is `Next.js - SSR` (not static Web). Then click **Redeploy this version**.
+
 See `.env.example` for all keys.
 
 ## License
